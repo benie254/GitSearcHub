@@ -13,7 +13,9 @@ export class RepoComponent implements OnInit {
   @Input() passData;
   arrayData;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+    ) { }
 
   ngOnInit() {
   }
