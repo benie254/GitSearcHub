@@ -1,9 +1,19 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+import { User } from 'src/app/classes/user/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileRequestService {
+  fromURL:string= 'https://api.github.com';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  gitUser(userName: string): Observable<User[]>{
+    return this.http.get<User[]>(this.fromURL + '/users/' + userName);
+  }
 }
