@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+import { GitService } from 'src/app/services/git/git.service';
+import { ProfileRequestService } from 'src/app/services/profile-request/profile-request.service'; 
+import { Repo } from 'src/app/classes/repo/repo';
+import { User } from 'src/app/classes/user/user';
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,7 +13,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  userName = 'benie254';
+  repo: Repo[];
+  user: User[];
+
+  values= '';
+  isLoading: boolean= false;
+  noInput: boolean= true;
+  getFetchSuccess: boolean= false;
+  NoUser: boolean= false;
+  myUser: Repo[];
+
+  errorMessage;
+
+  constructor(private gitService: GitService,private profileRequest: ProfileRequestService) {
+    
+   }
+
+  gitRepos(event: any){
+    let promise= new Promise((resolve, reject) =>{
+      this.gitService.gitRepos(this.userName).toPromise().then(response =>{
+        this.repo= response;
+        resolve('');
+      },
+      err =>{
+        this.errorMessage= 'An error was encountered';
+      });
+    });
+    return promise;
+  }
+
+  gitUser(event: any){
+    let promise= new Promise((resolve, reject) =>{
+      this.profileRequest.gitUser(this.userName).toPromise().then(response =>{
+        this.user= response;
+        // this.user.bio= response.bio;
+	      // this.user.avatar_url=response.avatar_url;
+        resolve('');
+      },
+      err =>{
+        this.errorMessage= 'An error was encountered';
+      });
+    });
+    return promise;
+  }
 
   ngOnInit(): void {
   }
