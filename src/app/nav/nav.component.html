@@ -1,1 +1,15 @@
-<p>nav works!</p>
+<nav class="navbar navbar-light bg-light" style="opacity:0.8;">
+    <div>
+        <h1> GitSearcHub </h1>
+    </div>
+    
+    <form class="container-fluid justify-content-start">
+        <button class="btn btn-lg btn-outline-success me-2" routerLink="" routerLinkActive="active" style="margin-left:17%;"> Home </button>
+      <button class="btn btn-lg btn-outline-success" style="margin-left:20%;width:auto;margin-top:1.5%;margin-bottom:1.5%;" routerLink="/search" routerLinkActive="active">
+        <!-- <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"> -->
+         Search Github
+      </button>
+
+      <app-social></app-social> 
+    </form>
+</nav>
