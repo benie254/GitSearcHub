@@ -11,7 +11,9 @@ import { Repo } from 'src/app/classes/repo/repo';
 export class GitService {
   baseURL:string= 'https://api.github.com';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+    ) { }
 
   gitRepos(userName: string): Observable<Repo[]>{
     return this.http.get<Repo[]>(this.baseURL + '/users/' + userName + '/repos');
