@@ -15,10 +15,37 @@
                 <span class="sr-only"> Searching; please wait... </span>
             </div>
         </div>
-        <h5 *ngIf="getFetchSuccess" class="text">  Repos by {{values}}: </h5>
+        <h5 *ngIf="getFetchSuccess" class="text">  Repos by {{values}}: 
+            <img src="{{gitUser.avatar_url}}" alt="">
+            <h1>{{gitUser.name}}</h1>
+            <p>size: {{gitUser.size}}</p>
+            <p>language: {{gitUser.language}}</p>
+            <p>description: {{gitUser.description}}</p>
+            <p>watchers_count: {{gitUser.watchers_count}}</p>
+            <p>forks_count: {{gitUser.forks_count}}</p>
+            <p>fork: {{gitUser.fork}}</p>
+            <p>html_url: {{gitUser.html_url}}</p>
+            <p>following_url: {{gitUser.following_url}}</p>
+            <p>followers_url: {{gitUser.followers_url}}</p>
+            <p>starred_url: {{gitUser.starred_url}}</p>
+            <p>created_at: {{gitUser.created_at}}</p>
+            <p>updated_at: {{gitUser.updated_at}}</p>
+            <p>public_repos: {{gitUser.public_repos}}</p>
+            <p>bio: {{gitUser.bio}}</p>
+            <p>repos_url: {{gitUser.repos_url}}</p>
+            <p>login: {{gitUser.login}}</p>
+            <p>blog: {{gitUser.blog}}</p>
+            <p>location: {{gitUser.location}}</p>
+            <p>twitter_username: {{gitUser.twitter_username}}</p>
+            <p>followers: {{gitUser.followers}}</p>
+            <p>following: {{gitUser.following}}</p>
+        </h5>
+        
     </div>
-
-    <app-repo *ngIf="getFetchSuccess" [passData]="myRepo"></app-repo>
+    <div *ngIf="getFetchSuccess">
+        <h1>{{gitUser.username}}</h1>
+    </div>
+    <!-- <app-repo *ngIf="getFetchSuccess" [passData]="myRepo"></app-repo> -->
 
     <div class="container" *ngIf="NoUser && getFetchSuccess">
         <div class="card text-center">

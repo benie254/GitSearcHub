@@ -21,6 +21,7 @@ export class UserComponent implements OnInit {
 
   myRepo: Repo[];
   myUser: User[];
+  gitUser: User[];
 
 
   constructor(private gitService: GitService,private profileRequest: ProfileRequestService) { }
@@ -44,15 +45,31 @@ export class UserComponent implements OnInit {
     this.NoUser= false;
     userName= this.values.trim();
     if (!userName) { return; }
-    this.gitService.gitRepos(userName);
+    // this.gitService.gitRepos(userName);
+    this.profileRequest.gitUser(userName);
     this.isLoading= true;
-    this.fetchUser(userName);
+    // this.fetchUser(userName);
+    this.getUserProfile(userName);
   }
 
   fetchUser(UserName): void{
     this.gitService.gitRepos(UserName).subscribe( data =>{
       this.myRepo= data;
       if (this.myRepo == undefined || this.myRepo && this.myRepo.length == 0){
+        this.NoUser= true;
+      } else {
+        this.NoUser= false;
+      };
+    });
+    setTimeout(function(){
+      this.isLoading= false;
+      this.getFetchSuccess= true;
+    }.bind(this),1000);
+  }
+  getUserProfile(UserName): void{
+    this.profileRequest.gitUser(UserName).subscribe( data =>{
+      this.gitUser= data;
+      if (this.gitUser == undefined || this.gitUser && this.gitUser.length == 0){
         this.NoUser= true;
       } else {
         this.NoUser= false;
